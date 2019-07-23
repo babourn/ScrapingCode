@@ -17,11 +17,14 @@ class Crawler:
             if os.path.isfile(os.path.join('/data/results', file)):
                 item_id = file.split('.')[0]
                 self.items_already_fetched.add(int(item_id))
+        
+        # COMMENT OUT THESE LINES WHEN FIRST RUNNING
         to_fetch_file = open('/data/results_meta/to_fetch.json', 'r')
         fetch_raw = to_fetch_file.read()
         fetch_list = json.loads(fetch_raw)
         self.items_to_fetch = set(fetch_list)
         to_fetch_file.close()
+        
         self.rectify_lists()
     
     def seed_items_from_cart(self):
